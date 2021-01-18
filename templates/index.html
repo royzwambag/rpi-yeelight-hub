@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <title>Yeelight</title>
+    <meta http-equiv="refresh" content="60">
+  </head>
+  <body>
+    <div class="middle">
+      {% for bulb in bulbs %}
+         <button type="button" class="button {% if bulb['capabilities']['power'] == 'off' %}button_off{% endif %}" onclick="window.location.href='{{ url_for("toggle", bulb_ip=bulb['ip']) }}'">
+          {% if bulb['capabilities']['power'] == 'on' %}💡{% endif %}
+            {{ bulb['capabilities']['name'] }}
+          {% if bulb['capabilities']['power'] == 'on' %}💡{% endif %}
+        </button>
+      {% endfor %}
+    </div>
+  </body>
+</html>
+
+
+
+<style>
+html {
+  background-color: #1a1a1a;
+  overflow: hidden;
+}
+
+.middle {
+  width: 100%;
+  text-align: center;
+}
+
+.button {
+  background-color: green;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 50px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 50%; 
+  height: 24%;
+}
+
+.button_off {
+  background-color: red;
+}
+</style>
